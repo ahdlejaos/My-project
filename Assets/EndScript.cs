@@ -10,6 +10,7 @@ public class EndScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("텍스트떠야함");
         if (other.CompareTag("Player"))
         {
             m_Text.gameObject.SetActive(true);

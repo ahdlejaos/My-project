@@ -24,7 +24,7 @@ public class BallTrap : MonoBehaviour
 
     }
 
-    /*  public void OnControllerColliderHit(ControllerColliderHit hit)
+    /* public void OnControllerColliderHit(ControllerColliderHit hit)
       {
           if(hit.gameObject.CompareTag("Player"))
           {
