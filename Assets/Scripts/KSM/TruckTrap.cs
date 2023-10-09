@@ -44,6 +44,7 @@ public class TruckTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("트럭충돌");
             other.GetComponent<MovementCharacterController>().TakeDamage(m_TrapDamage);
 
             Vector3 hitDirection = (other.transform.position - transform.position).normalized;

@@ -14,6 +14,7 @@ public class BallTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("°ø¸ÂÀ½");
             other.GetComponent<MovementCharacterController>().TakeDamage(m_TrapDamage);
 
             Vector3 hitDirection = (other.transform.position - transform.position).normalized;
