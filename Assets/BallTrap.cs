@@ -8,8 +8,6 @@ public class BallTrap : MonoBehaviour
 
     public float m_TrapDamage;
 
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -34,11 +32,5 @@ public class BallTrap : MonoBehaviour
               m_CharacterController.Move(pushDirection * m_Hitforce * Time.deltaTime);
           }
       }*/
-
-
-
-
-
-
 }
 

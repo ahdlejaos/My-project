@@ -8,6 +8,8 @@ public class SpawnSnowball : MonoBehaviour
     public float m_SpawnInteral = 3f;
 
     private float m_Timer = 0f;
+    
+   
 
     private void Update()
     {

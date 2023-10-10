@@ -17,12 +17,12 @@ public class EndScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+   /* private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             m_Text.gameObject.SetActive(false);
         }
 
-    }
+    }*/
 }
