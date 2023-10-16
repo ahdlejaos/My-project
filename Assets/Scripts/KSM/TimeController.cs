@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,20 +14,19 @@ public class TimeController : MonoBehaviour
     public TextMeshProUGUI m_TimerText;
     public Button m_Btn;
 
-
+    public PlayableDirector m_Timeline;
+    private bool m_TimelineFinished = false;
 
     void PauseScene()
     {
-        Time.timeScale = 0.0f; // 시간 흐름을 멈춥니다.
+        Time.timeScale = 0.0f;
     }
 
-    // 씬을 재시작하는 함수
     void RestartScene()
     {
-        Time.timeScale = 1.0f; // 시간 흐름을 다시 시작합니다.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 현재 씬을 다시 불러옵니다.
+        Time.timeScale = 1.0f; 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 
     void Start()
     {
@@ -36,31 +36,39 @@ public class TimeController : MonoBehaviour
 
     void Update()
     {
-        if (m_IsTimerRunning)
+        if (m_Timeline.state != PlayState.Playing)
         {
-            m_CurrentTime -= Time.deltaTime;
-
-
-            if (m_CurrentTime <= 0)
+            if (!m_TimelineFinished)
             {
-                m_CurrentTime = 0;
-                m_IsTimerRunning = false;
-
-                PauseScene();
-                m_Btn.gameObject.SetActive(true);
+                m_TimerText.gameObject.SetActive(true);
+                StartTimer();
+                m_TimelineFinished = true;
             }
 
-            m_TimerText.text = m_CurrentTime.ToString("F2");
-        }
-    }
+            if (m_IsTimerRunning)
+            {
+                m_CurrentTime -= Time.deltaTime;
 
+
+                if (m_CurrentTime <= 0)
+                {
+                    m_CurrentTime = 0;
+                    m_IsTimerRunning = false;
+
+                    PauseScene();
+                    m_Btn.gameObject.SetActive(true);
+                }
+
+                m_TimerText.text = m_CurrentTime.ToString("F2");
+            }
+        }
+
+    }
     void StartTimer()
     {
         m_CurrentTime = m_TotalTime;
         m_IsTimerRunning = true;
     }
-
-    // 타이머 종료
     void StopTimer()
     {
         m_IsTimerRunning = false;
