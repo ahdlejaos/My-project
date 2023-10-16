@@ -6,20 +6,22 @@ using UnityEngine.SceneManagement;
 public class playerRevive : MonoBehaviour
 {
     public Transform m_SpawnPoint;
-    public int m_Respawn;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
+            CharacterController characterController = other.GetComponent<CharacterController>();
+            if (characterController != null)
+            {
+                Debug.Log("∫Œ»∞");
+                characterController.enabled = false;
+                other.transform.position = m_SpawnPoint.position;
+                characterController.enabled = true; 
+            }
+
             Debug.Log("¡¶πﬂπŸ≤∏¡‡");
-            SceneManager.LoadScene(m_Respawn);
+            //SceneManager.LoadScene(m_Respawn);
         }
 
 

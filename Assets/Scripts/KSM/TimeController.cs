@@ -17,14 +17,21 @@ public class TimeController : MonoBehaviour
     public PlayableDirector m_Timeline;
     private bool m_TimelineFinished = false;
 
-    void PauseScene()
+    public void PauseScene()
     {
         Time.timeScale = 0.0f;
     }
 
-    void RestartScene()
+    public void ResumeScene()
     {
-        Time.timeScale = 1.0f; 
+        Time.timeScale = 1.0f;
+        m_IsTimerRunning = true;
+    }
+
+
+    public void RestartScene()
+    {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -69,9 +76,16 @@ public class TimeController : MonoBehaviour
         m_CurrentTime = m_TotalTime;
         m_IsTimerRunning = true;
     }
-    void StopTimer()
+    public void StopTimer()
     {
         m_IsTimerRunning = false;
     }
+
+    public void ResumeTimer()
+    {
+        m_IsTimerRunning = true;
+    }
+
+
 
 }
