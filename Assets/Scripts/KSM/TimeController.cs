@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class TimeController : MonoBehaviour
 {
     public float m_TotalTime = 60.0f;
-    private float m_CurrentTime;
+    public float m_CurrentTime;
     private bool m_IsTimerRunning = false;
     public TextMeshProUGUI m_TimerText;
     public Button m_Btn;
@@ -35,13 +35,13 @@ public class TimeController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void Start()
+    public void Start()
     {
         m_CurrentTime = m_TotalTime;
         m_IsTimerRunning = true;
     }
 
-    void Update()
+    public void Update()
     {
         if (m_Timeline.state != PlayState.Playing)
         {
@@ -71,7 +71,7 @@ public class TimeController : MonoBehaviour
         }
 
     }
-    void StartTimer()
+    public void StartTimer()
     {
         m_CurrentTime = m_TotalTime;
         m_IsTimerRunning = true;
